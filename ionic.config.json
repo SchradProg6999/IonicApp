@@ -1,0 +1,8 @@
+{
+  "name": "RestaurantRoulette",
+  "app_id": "8e2a896e",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

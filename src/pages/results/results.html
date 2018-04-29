@@ -14,5 +14,29 @@
 
 
 <ion-content padding>
-  <pre>{{curRes | json}}</pre>
+  <div *ngIf="!curRes">
+      <ion-spinner name="dots"></ion-spinner>
+  </div>
+  <div *ngIf="curRes">
+    <div class="results-res-name-div">
+        <h2>{{curRes.name}}</h2>
+    </div>
+    <div class="results-res-img">
+      <img src="{{curRes.image_url}}" alt="{{curRes.name}}">
+    </div>
+    <div class="results-cuisine-list-div">
+      <p>Cuisine:</p>
+      <p>{{buildCuisineList(curRes)}}</p>
+    </div>
+    <div class="results-distance-div">
+      <p>{{getDistance(curRes)}} miles</p>
+    </div>
+    <div class="results-hours">
+      <p>Today's Hours: {{getOpenTime(curRes)}} - {{getCloseTime(curRes)}}</p>
+    </div>
+    <div>
+        <button (click)="declineOption()">Nope</button>
+        <button (click)="viewDeets()">View Details</button>
+      </div>
+  </div>
 </ion-content>

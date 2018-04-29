@@ -13,6 +13,8 @@ const url = "http://ganskop.com/proxy/https://api.yelp.com/v3";
 @Injectable()
 export class YelpServiceProvider {
 
+  private formData;
+
   public headers = new HttpHeaders({
       "Authorization":"Bearer " + key
     });
@@ -21,20 +23,39 @@ export class YelpServiceProvider {
 
   }
 
-  getRestaurantList(formData): Observable<any>{
-    formData.radius = parseInt(formData.radius) * 1609;
-    console.log(formData.radius);
+  getRestaurantList(formData?): Observable<any>{
+    if(formData != undefined){
+      this.formData = formData;
+    }
+
+    if(this.formData == undefined){
+      return undefined;
+    }
+
+    let radius = 0;
+    radius = parseInt(this.formData.radiusModel) * 1609;
+    console.log(this.formData);
     return this.http.get(
       url + "/businesses/search",
       {
         params: {
-          categories: "hotdogs",
-          latitude: "43.071840",
-          longitude: "-77.625019",
-          radius: "10000",
-          offset: "0",
-          open_now: "false"
+          categories: this.formData.category,
+          radius: String(radius),
+          offset: this.formData.offset,
+          open_now: "true",
+          limit: this.formData.limit,
+          latitude: this.formData.lat,
+          longitude: this.formData.long
         },
+        headers: this.headers
+      }
+    );
+  }
+
+  getRestaurantDetails(id): Observable<any>{
+    return this.http.get(
+      url + "/businesses/" + id,
+      {
         headers: this.headers
       }
     );

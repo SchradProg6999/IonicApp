@@ -7,38 +7,42 @@
 <ion-content padding>
 <div class="choice-filter" id="category-div">
   <p>Category</p>
-  <select name="category-select-box" id="category-select-box">
-    <option value="">This</option>
-    <option value="">is</option>
-    <option value="">where</option>
-    <option value="">the</option>
-    <option value="">choices</option>
-    <option value="">go</option>
-  </select>
+  <ion-item>>
+    <ion-select name="category-select-box" id="category-select-box" [(ngModel)]="formData.category">
+      <ion-option value="shit">is</ion-option>
+      <ion-option value="dummy">This</ion-option>
+      <ion-option value="in">where</ion-option>
+      <ion-option value="there">the</ion-option>
+      <ion-option value="for">choices</ion-option>
+      <ion-option value="now">go</ion-option>
+    </ion-select>
+    </ion-item>
 </div>
 
 <div class="choice-filter" id="radius-div">
-  <p>Radius (miles)</p>
-  <ion-range min="0" max="30" step="5" snaps="true">
-
-  </ion-range>
+  <p>Radius (miles) <ion-badge>{{formData.radiusModel}}</ion-badge></p>
+  <ion-item>
+    <ion-range min="5" max="30" step="5" snaps="true" [(ngModel)]="formData.radiusModel"></ion-range>
+  </ion-item>
 </div>
 
 <div class="choice-filter" id="dining-type-div">
   <p>Dining Type</p>
-  <ion-item>
-      <ion-label>Dine-In</ion-label>
-      <ion-radio value="dinein" checked></ion-radio>
-  </ion-item>
-  <ion-item>
-      <ion-label>Take Out</ion-label>
-      <ion-radio value="takeout"></ion-radio>
-  </ion-item>
-  <ion-item>
-      <ion-label>Delivery</ion-label>
-      <ion-radio value="delivery"></ion-radio>
-  </ion-item>
+  <ion-list>
+      <ion-item>
+          <ion-label>Dine-In</ion-label>
+          <ion-checkbox value="dinein" checked [(ngModel)]="formData.diningType.dineIn"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Take Out</ion-label>
+          <ion-checkbox value="takeout" [(ngModel)]="formData.diningType.takeOut"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+          <ion-label>Delivery</ion-label>
+          <ion-checkbox value="delivery" [(ngModel)]="formData.diningType.delivery"></ion-checkbox>
+      </ion-item>
+  </ion-list>
 </div>
 
-<button id="find-res-btn">FIND A RESTAURANT</button>
+<button id="find-res-btn" (click)="findRest()">FIND A RESTAURANT</button>
 </ion-content>

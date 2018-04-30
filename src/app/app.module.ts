@@ -4,12 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ResultsPage } from '../pages/results/results';
+import { DetailsPage } from '../pages/details/details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +24,8 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     ContactPage,
     HomePage,
     TabsPage,
-    ResultsPage
+    ResultsPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     ContactPage,
     HomePage,
     TabsPage,
-    ResultsPage
+    ResultsPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +48,8 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpClientModule,
     YelpServiceProvider,
-    Geolocation
+    Geolocation,
+    CallNumber
   ]
 })
 export class AppModule {}

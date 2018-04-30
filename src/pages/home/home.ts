@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ResultsPage } from '../results/results'
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,9 +19,7 @@ export class HomePage {
       delivery: false
     },
     lat: 0,
-    long: 0,
-    offset: 0,
-    limit: 6
+    long: 0
   };
 
   constructor(private geolocation: Geolocation, public navCtrl: NavController) {

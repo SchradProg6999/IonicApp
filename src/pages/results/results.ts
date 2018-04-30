@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DetailsPage } from '../details/details';
 import { YelpServiceProvider } from '../../providers/yelp-service/yelp-service'
 
 /**
@@ -9,11 +10,14 @@ import { YelpServiceProvider } from '../../providers/yelp-service/yelp-service'
  * Ionic pages and navigation.
  */
 
+const newLimit = 10;
+
 @IonicPage()
 @Component({
   selector: 'page-results',
   templateUrl: 'results.html',
 })
+
 export class ResultsPage {
 
   public formData;
@@ -23,12 +27,13 @@ export class ResultsPage {
 
   constructor(public yelpService: YelpServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.formData = navParams.get("formData");
-    this.getRestaurantList();
+    this.getRestaurantList(this.formData);
   }
 
-  getRestaurantList(){
-    this.yelpService.getRestaurantList(this.formData).subscribe(
+  getRestaurantList(reqData?){
+    this.yelpService.getRestaurantList(reqData).subscribe(
       data => {
+        console.log(data);
         if(this.restaurantList.length == 0){
           this.restaurantList = data.businesses;
           this.getRestaurantDeets();
@@ -69,6 +74,8 @@ export class ResultsPage {
       else
         list += cat.title + ", ";
     });
+
+    this.curRes["cuisineList"] = list;
     return list;
   }
 
@@ -90,6 +97,7 @@ export class ResultsPage {
     openTime += ":" + startMinute;
     openTime += (startHour >= 12) ? "PM" : "AM";
 
+    this.curRes["openTime"] = openTime;
     return openTime;
   }
 
@@ -104,19 +112,14 @@ export class ResultsPage {
     closeTime += ":" + endMinute;
     closeTime += (endHour >= 12) ? "PM" : "AM";
 
+    this.curRes["closeTime"] = closeTime;
     return closeTime;
   }
 
-  getAddress(res){
-    let addressLine = "";
-    res.location.display_address.forEach(address => {
-      addressLine += address + " ";
-    });
-    return addressLine;
-  }
-
   getDistance(res){
-    return (Number(res.distance)/1609.34).toFixed(2);
+    let miles = (Number(res.distance)/1609.34).toFixed(2);
+    this.curRes["dist"] = miles;
+    return miles;
   }
 
   declineOption(){
@@ -124,7 +127,7 @@ export class ResultsPage {
   }
 
   viewDeets(){
-
+    this.navCtrl.push(DetailsPage, {data: this.curRes});
   }
 
 
@@ -132,18 +135,11 @@ export class ResultsPage {
     let index = this.restaurantList.findIndex(item => item.id == res.id);
     if(index != undefined && index > -1){
       this.restaurantList.splice(index, 1);
+      console.log(this.restaurantList);
       this.getRestaurantDeets();
       console.log("List size after removal: " + this.restaurantList.length);
       if(this.restaurantList.length == Math.floor(this.listSize/2)){
         console.log("Another call made");
-        this.formData.limit = 3;
-        if(this.formData.offset < 3){
-          this.formData.offset = 3;
-        }
-        else{
-          this.formData.offset ++;
-        }
-        console.log(this.formData.offset);
         this.getRestaurantList();
       }
     }

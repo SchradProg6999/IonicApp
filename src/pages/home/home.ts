@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ResultsPage } from '../results/results'
+import { SurprisePage } from '../surprise/surprise';
+
 import { Geolocation } from '@ionic-native/geolocation';
 
 
@@ -22,8 +24,8 @@ export class HomePage {
     long: 0
   };
 
-  constructor(private geolocation: Geolocation, public navCtrl: NavController) {
-
+  constructor(private geolocation: Geolocation, public navCtrl: NavController, public navParams: NavParams) {
+    console.log(navParams.data);
   }
 
 

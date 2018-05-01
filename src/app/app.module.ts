@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ResultsPage } from '../pages/results/results';
 import { DetailsPage } from '../pages/details/details';
+import { SurprisePage } from '../pages/surprise/surprise';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +26,8 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     HomePage,
     TabsPage,
     ResultsPage,
-    DetailsPage
+    DetailsPage,
+    SurprisePage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     HomePage,
     TabsPage,
     ResultsPage,
-    DetailsPage
+    DetailsPage,
+    SurprisePage
   ],
   providers: [
     StatusBar,

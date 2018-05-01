@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { NavParams } from 'ionic-angular';
 
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
+import { DetailsPage } from '../details/details';
+import { SurprisePage } from '../surprise/surprise';
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -10,10 +14,23 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab2Root = SurprisePage;
 
-  constructor() {
+  private locationData = {
+    lat: 0,
+    long: 0
+  };
 
+  constructor(private geolocation: Geolocation, params: NavParams) {
+    this.getLocation();
+  }
+
+  getLocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.locationData.lat = resp.coords.latitude;
+      this.locationData.long = resp.coords.longitude;
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
   }
 }

@@ -40,10 +40,10 @@
         <p>{{getAddress(curRes)}}</p>
       </div>
       <div *ngIf="hasPhone(curRes)">
-        <button (click)="callNum()">CALL {{formatPhone(curRes)}}</button>
+        <button ion-button (click)="callNum()">CALL {{formatPhone(curRes)}}</button>
       </div>
       <div>
-        <button>VISIT WEBSITE</button>
+        <button ion-button>VISIT WEBSITE</button>
       </div>
     </div>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CallNumber } from '@ionic-native/call-number';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { MapboxProvider } from '../../providers/mapbox/mapbox';
 
 /**
  * Generated class for the DetailsPage page.
@@ -18,7 +20,7 @@ export class DetailsPage {
 
   public curRes;
 
-  constructor(private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public mapBox: MapboxProvider, private iab:InAppBrowser, private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams) {
     this.curRes = navParams.get("data");
     console.log(this.curRes);
   }
@@ -55,7 +57,14 @@ export class DetailsPage {
       .catch(err => console.log('Error launching dialer', err));
   }
 
+  visitWebsite(){
+    const browser = this.iab.create(this.curRes.url);
+  }
+
   ionViewDidLoad() {
+    this.mapBox.getTravelInfo(this.curRes.coordinates, function(data){
+      console.log(data);
+    });
     console.log('ionViewDidLoad DetailsPage');
   }
 }

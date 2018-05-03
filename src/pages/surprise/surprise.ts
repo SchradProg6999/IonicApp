@@ -16,29 +16,16 @@ import { ResultsPage } from '../results/results';
 })
 export class SurprisePage {
 
-  formData;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(navParams.data.lat);
-    console.log(navParams.data.long);
+  formData = {
+    category: "restaurants",
+    radiusModel: 20
   }
 
-  // adds random values to the formData object to generate the list
-  setRandomData(){
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     
   }
 
-  loadRandomList(){
-    this.navCtrl.push(ResultsPage, {formData: this.formData});
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SurprisePage');
-    this.setRandomData();
+    this.navCtrl.push(ResultsPage, {formData: this.formData, isSurprise: true});
   }
-
-  generateRandomNumber(){
-
-  }
-
 }

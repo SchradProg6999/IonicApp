@@ -21,33 +21,31 @@ const newLimit = 10;
 export class ResultsPage {
 
   public formData;
+  public isSurprise = false;
   public curRes;
   private restaurantList = [];
   private listSize;
 
   constructor(public yelpService: YelpServiceProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.formData = navParams.get("formData");
+    this.isSurprise = (navParams.get("isSurprise") != undefined) ? navParams.get("isSurprise") : false;
     this.getRestaurantList(this.formData);
   }
 
   getRestaurantList(reqData?){
-    this.yelpService.getRestaurantList(reqData).subscribe(
-      data => {
-        console.log(data);
-        if(this.restaurantList.length == 0){
-          this.restaurantList = data.businesses;
-          this.getRestaurantDeets();
-        }
-        else{
-          this.restaurantList = this.restaurantList.concat(data.businesses);
-        }
-        this.listSize = this.restaurantList.length;
-        console.log("New Listsize: " + this.listSize);
-      },
-      errors => {
-        console.log("Failure in Yelp API call, results.ts");
+    let self = this;
+    this.yelpService.getRestaurantList(function(data){
+      console.log(data);
+      if(self.restaurantList.length == 0){
+        self.restaurantList = data.businesses;
+        self.getRestaurantDeets();
       }
-    );
+      else{
+        self.restaurantList = self.restaurantList.concat(data.businesses);
+      }
+      self.listSize = self.restaurantList.length;
+      console.log("New Listsize: " + self.listSize);
+    }, reqData);
   }
 
   getRestaurantDeets(){

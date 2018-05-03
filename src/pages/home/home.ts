@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ResultsPage } from '../results/results'
 import { SurprisePage } from '../surprise/surprise';
-
-import { Geolocation } from '@ionic-native/geolocation';
 
 
 @Component({
@@ -19,13 +17,11 @@ export class HomePage {
       dineIn: false,
       takeOut: false,
       delivery: false
-    },
-    lat: 0,
-    long: 0
+    }
   };
 
-  constructor(private geolocation: Geolocation, public navCtrl: NavController, public navParams: NavParams) {
-    console.log(navParams.data);
+  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
 
@@ -34,11 +30,6 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.formData.lat = resp.coords.latitude;
-      this.formData.long = resp.coords.longitude;
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
+
   }
 }

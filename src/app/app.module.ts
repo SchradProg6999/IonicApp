@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CallNumber } from '@ionic-native/call-number';
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -17,6 +18,7 @@ import { SurprisePage } from '../pages/surprise/surprise';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
+import { MapboxProvider } from '../providers/mapbox/mapbox';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { YelpServiceProvider } from '../providers/yelp-service/yelp-service';
     HttpClientModule,
     YelpServiceProvider,
     Geolocation,
-    CallNumber
+    CallNumber,
+    InAppBrowser,
+    MapboxProvider
   ]
 })
 export class AppModule {}

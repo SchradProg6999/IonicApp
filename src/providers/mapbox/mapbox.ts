@@ -29,8 +29,6 @@ export class MapboxProvider {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.locationData.lat = resp.coords.latitude;
       this.locationData.long = resp.coords.longitude;
-      
-      console.log(resCoords);
       this.http.get(
         url + "/" + this.locationData.long + "," + this.locationData.lat + ";" + resCoords.longitude + "," + resCoords.latitude,
         {

@@ -90,4 +90,49 @@ export class YelpServiceProvider {
       }
     );
   }
+
+  getAllCategories(){
+    return [
+      {
+        name: "Fast Food",
+        value: "hotdogs"
+      },
+      {
+        name: "Chinese",
+        value: "chinese"
+      },
+      {
+        name: "Bars",
+        value: "bars"
+      },
+      {
+        name: "Burgers",
+        value: "burgers"
+      },
+      {
+        name: "Italian",
+        value: "italian"
+      },
+      {
+        name: "Greek",
+        value: "greek"
+      },
+      {
+        name: "Indian",
+        value: "indpak"
+      },
+      {
+        name: "Mexican",
+        value: "mexican"
+      },
+      {
+        name: "Pizza",
+        value: "pizza"
+      },
+      {
+        name: "Vegetarian",
+        value: "vegetarian"
+      },
+    ];
+  }
 }

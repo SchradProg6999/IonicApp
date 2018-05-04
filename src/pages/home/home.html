@@ -7,15 +7,9 @@
 <ion-content padding>
 <div class="choice-filter" id="category-div">
   <p>Category</p>
-  <ion-item>>
-    <ion-select name="category-select-box" id="category-select-box" [(ngModel)]="formData.category">
-      <ion-option value = "">---Select---</ion-option>
-      <ion-option value="shit">is</ion-option>
-      <ion-option value="dummy">This</ion-option>
-      <ion-option value="in">where</ion-option>
-      <ion-option value="there">the</ion-option>
-      <ion-option value="for">choices</ion-option>
-      <ion-option value="now">go</ion-option>
+  <ion-item>
+    <ion-select name="category-select-box" id="category-select-box" multiple="true" [(ngModel)]="formData.category">
+      <ion-option *ngFor="let cat of categories" value="{{cat.value}}">{{cat.name}}</ion-option>
     </ion-select>
     </ion-item>
 </div>
@@ -44,6 +38,7 @@
       </ion-item>
   </ion-list>
 </div>
-
-<button ion-button id="find-res-btn" (click)="findRest()">FIND A RESTAURANT</button>
+<div id="find-res-btn">
+    <button ion-button (click)="findRest()">FIND A RESTAURANT</button>
+</div>
 </ion-content>

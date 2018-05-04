@@ -1,3 +1,50 @@
 page-details {
 
 }
+
+.details-wrapper{
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+.details-distance-div{
+    float: right;
+}
+
+.details-cuisine-header-div{
+    display: inline-block;
+}
+
+.details-field{
+    margin: 10px;
+    font-weight: bold;
+}
+
+.choice-btn-div{
+    button{
+        width: 49%;
+        display: inline-block;
+        margin: 0;
+        height: 5rem;
+        color: $primary-color;
+        background-color: $secondary-color;
+        box-shadow: none !important;
+        border: 1px solid rgba(0,0,0,.1);
+    }
+}
+
+.details-res-name-div{
+    color: $primary-color;
+    border-radius: 0;
+}
+
+.details-res-img{
+    width: 100%;
+    height: 30vh;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

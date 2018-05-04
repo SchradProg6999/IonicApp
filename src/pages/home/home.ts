@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { ResultsPage } from '../results/results'
 import { SurprisePage } from '../surprise/surprise';
+import { YelpServiceProvider } from '../../providers/yelp-service/yelp-service';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { SurprisePage } from '../surprise/surprise';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  public categories;
 
   public formData = {
     category: "",
@@ -20,8 +23,9 @@ export class HomePage {
     }
   };
 
-  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public yelpServiceProvider: YelpServiceProvider, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
+    this.categories = yelpServiceProvider.getAllCategories();
+    console.log(this.categories);
   }
 
 
@@ -30,6 +34,6 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-
+    
   }
 }

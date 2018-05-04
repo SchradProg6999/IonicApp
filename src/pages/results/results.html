@@ -14,29 +14,32 @@
 
 
 <ion-content padding>
-  <div *ngIf="!curRes">
-      <ion-spinner name="dots"></ion-spinner>
-  </div>
-  <div *ngIf="curRes">
-    <div class="results-res-name-div">
-        <h2>{{curRes.name}}</h2>
-    </div>
-    <div class="results-res-img">
-      <img src="{{curRes.image_url}}" alt="{{curRes.name}}">
-    </div>
-    <div class="results-cuisine-list-div">
-      <p>Cuisine:</p>
-      <p>{{buildCuisineList(curRes)}}</p>
-    </div>
-    <div class="results-distance-div">
-      <p>{{getDistance(curRes)}} miles</p>
-    </div>
-    <div class="results-hours">
-      <p>Today's Hours: {{getOpenTime(curRes)}} - {{getCloseTime(curRes)}}</p>
-    </div>
-    <div>
-        <button ion-button (click)="declineOption()">Nope</button>
-        <button ion-button (click)="viewDeets()">View Details</button>
+  <div class="results-wrapper">
+      <div *ngIf="!curRes">
+          <ion-spinner name="dots"></ion-spinner>
+      </div>
+      <div *ngIf="curRes">
+        <div class="results-res-name-div">
+            <h2>{{curRes.name}}</h2>
+        </div>
+        <div class="results-res-img" [ngStyle]="{'background-image': 'url(' + curRes.image_url + ')'}">
+        </div>
+        <div class="results-field results-distance-div">
+            <p>{{getDistance(curRes)}} miles</p>
+          </div>
+        <div class="results-field results-cuisine-header-div">
+          <p>Cuisine:</p>
+        </div>
+        <div class="results-field results-cuisine-list-div">
+            <p>{{buildCuisineList(curRes)}}</p>
+        </div>
+        <div class="results-field results-hours">
+          <p>Today's Hours: {{getOpenTime(curRes)}} - {{getCloseTime(curRes)}}</p>
+        </div>
+        <div class="choice-btn-div">
+            <button ion-button (click)="declineOption()">Nope</button>
+            <button ion-button (click)="viewDeets()">View Details</button>
+        </div>
       </div>
   </div>
 </ion-content>

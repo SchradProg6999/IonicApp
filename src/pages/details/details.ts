@@ -19,6 +19,7 @@ import { MapboxProvider } from '../../providers/mapbox/mapbox';
 export class DetailsPage {
 
   public curRes;
+  public minTravel;
 
   constructor(public mapBox: MapboxProvider, private iab:InAppBrowser, private callNumber: CallNumber, public navCtrl: NavController, public navParams: NavParams) {
     this.curRes = navParams.get("data");
@@ -62,8 +63,9 @@ export class DetailsPage {
   }
 
   ionViewDidLoad() {
+    var self = this;
     this.mapBox.getTravelInfo(this.curRes.coordinates, function(data){
-      console.log(data);
+      self.minTravel = Math.round(data.routes[0].duration/60);
     });
     console.log('ionViewDidLoad DetailsPage');
   }

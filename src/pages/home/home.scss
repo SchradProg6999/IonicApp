@@ -5,4 +5,52 @@ page-home {
 
 .choice-filter{
     background-color: $secondary-color;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
+    padding: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    p{
+        color: $primary-color;
+        padding: 5px;
+    }
+
+    .item-inner{
+        padding: 0 !important;
+    }
+}
+
+
+
+ion-select{
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid rgb(244,227,178);
+    font-size: 1.3rem;
+}
+
+ion-item{
+    &.item-block{
+        &.item-md{
+            padding: 0;
+        }
+        &.item-ios{
+            padding: 0;
+        }
+    }
+}
+
+#find-res-btn{
+    button{
+        background-color: $primary-color;
+    }
+    text-align: center;
+}
+
+ion-badge{
+    &.badge-ios{
+        background-color: $primary-color;
+    }
+    &.badge-md{
+        background-color: $primary-color;
+    }
 }

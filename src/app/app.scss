@@ -23,3 +23,17 @@ $accent-color: #F1DFAC;
 .remove-back-btn button.back-button{
     display: none;
 }
+
+ion-navbar{
+    .toolbar-background{
+        background-color:$primary-color;
+    }
+
+    .toolbar-title{
+        color: $secondary-color;
+        text-align: center;
+    }
+}
+p{
+    margin: 0;
+}

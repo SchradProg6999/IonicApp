@@ -1,18 +1,24 @@
-page-details {
-
-}
-
 .details-wrapper{
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.3);
     padding: 10px;
 }
 
-.details-distance-div{
+.travel-info-div{
     float: right;
 }
 
-.details-cuisine-header-div{
+.details-distance-div{
+    margin-bottom: 0;
+    float: right;
+}
+
+.details-travel-time{
+    float: right;
+}
+
+.details-header-div{
     display: inline-block;
+    margin-bottom: 0 !important;
 }
 
 .details-field{
@@ -47,4 +53,22 @@ page-details {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+#details-distance-label{
+    display: inline-block;
+}
+
+#details-travel-label{
+    display: inline-block;
+}
+
+.center{
+    text-align: center;
+}
+
+.details-btn{
+    button{
+        width: 75vw;
+    }
 }

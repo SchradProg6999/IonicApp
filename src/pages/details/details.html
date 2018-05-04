@@ -14,39 +14,47 @@
 
 
 <ion-content padding>
-    <div *ngIf="!curRes">
-        <ion-spinner name="dots"></ion-spinner>
-    </div>
-    <div *ngIf="curRes">
-      <div class="details-res-name-div">
-          <h2>{{curRes.name}}</h2>
+  <div class="details-wrapper">
+      <div *ngIf="!curRes">
+          <ion-spinner name="dots"></ion-spinner>
       </div>
-      <div class="details-res-img">
-        <img src="{{curRes.image_url}}" alt="{{curRes.name}}">
+      <div *ngIf="curRes">
+        <div class="details-field details-res-name-div">
+            <h2>{{curRes.name}}</h2>
+        </div>
+        <div class="details-res-img" [ngStyle]="{'background-image': 'url(' + curRes.image_url + ')'}"></div>
+        <div class="details-field">
+          <p id="details-distance-label">Distance:</p>
+          <div class="details-distance-div">
+              <p>{{curRes.dist}} miles</p>
+          </div>
+        </div>
+        <div class="details-field">
+          <p id="details-travel-label">Travel Time</p>
+          <div class="details-travel-time">
+              <p>{{minTravel}} minutes</p>
+          </div>
+        </div>
+        <div class="details-field details-header-div">
+            <p>Cuisine:</p>
+        </div>
+        <div class="details-field details-cuisine-list-div">
+          <p>{{curRes.cuisineList}}</p>
+        </div>
+        <div class="details-field details-hours">
+          <p>Today's Hours: </p>
+          <p>{{curRes.openTime}} - {{curRes.closeTime}}</p>
+        </div>
+        <div class="details-field">
+          <p>Address:</p>
+          <p>{{getAddress(curRes)}}</p>
+        </div>
+        <div *ngIf="hasPhone(curRes)" class='details-btn center'>
+          <button ion-button (click)="callNum()">CALL {{formatPhone(curRes)}}</button>
+        </div>
+        <div class="details-btn center">
+          <button ion-button (click)="visitWebsite()">VISIT WEBSITE</button>
+        </div>
       </div>
-      <div class="details-cuisine-list-div">
-        <p>Cuisine:</p>
-        <p>{{curRes.cuisineList}}</p>
-      </div>
-      <div class="details-distance-div">
-        <p>{{curRes.dist}} miles</p>
-      </div>
-      <div class="details-travel-time">
-        <p>{{minTravel}} minutes</p>
-      </div>
-      <div class="details-hours">
-        <p>Today's Hours: </p>
-        <p>{{curRes.openTime}} - {{curRes.closeTime}}</p>
-      </div>
-      <div>
-        <p>Address:</p>
-        <p>{{getAddress(curRes)}}</p>
-      </div>
-      <div *ngIf="hasPhone(curRes)">
-        <button ion-button (click)="callNum()">CALL {{formatPhone(curRes)}}</button>
-      </div>
-      <div>
-        <button ion-button (click)="visitWebsite()">VISIT WEBSITE</button>
-      </div>
-    </div>
+  </div>
 </ion-content>

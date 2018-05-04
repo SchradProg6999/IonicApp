@@ -25,12 +25,12 @@ export class HomePage {
 
   constructor(public yelpServiceProvider: YelpServiceProvider, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.categories = yelpServiceProvider.getAllCategories();
-    console.log(this.categories);
   }
 
 
   findRest(){
     this.navCtrl.push(ResultsPage, {formData: this.formData});
+    console.log(this.formData);
   }
 
   ionViewDidLoad(){
